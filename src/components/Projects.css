@@ -1,0 +1,92 @@
+/* Projects section styles */
+h2{
+    color:#6c63ff;
+    text-align: center;
+}
+.projects {
+    padding: 100px 20px;
+    background-color: #f9f9f9;
+    overflow: hidden; /* Hide any overflow */
+}
+
+.projects-container {
+    position: relative;
+    overflow: hidden; /* Ensure no overflow outside the container */
+    white-space: nowrap; /* Prevent wrapping of elements */
+}
+
+.projects-list {
+    display: flex; /* Use flexbox for horizontal layout */
+    animation: scroll 30s linear infinite; /* Horizontal scroll animation */
+    transition: transform 0.3s ease-in-out; /* Smooth transition on hover */
+}
+
+/* Project Item Styling */
+.project-item {
+    display: inline-block;
+    width: 300px; /* Set a fixed width to prevent text from wrapping */
+    margin: 0 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    white-space: normal; /* Allow normal word wrapping */
+}
+
+.project-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Stylish Hover Effects for Project Items */
+.project-item:hover {
+    transform: scale(1.05); /* Slightly enlarge the project item on hover */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add a shadow for a 3D effect */
+}
+
+/* Description and Read more/less styles */
+.project-item p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: #555;
+    white-space: pre-wrap; /* Ensures long text wraps properly without breaking layout */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Adds '...' for text overflow */
+    height: 50px; /* Set a fixed height for consistent card sizes */
+}
+
+.read-more {
+    color: #007bff;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.read-more:hover {
+    color: #0056b3;
+}
+
+/* Keyframes for infinite scrolling */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Pause animation on hover */
+.projects-container:hover .projects-list {
+    animation-play-state: paused;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .project-item {
+        width: 250px;
+    }
+
+    .projects h2 {
+        font-size: 2rem;
+    }
+}
