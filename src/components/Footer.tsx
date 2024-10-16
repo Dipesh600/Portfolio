@@ -10,17 +10,17 @@ const Footer: React.FC = () => {
           <h3>Let's Connect!</h3>
           <ul className="social-links">
             <li>
-              <a href="https://www.linkedin.com/in/dipesh-chaudhary/" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/dipesh--chaudhary//" target="_blank" rel="noopener noreferrer">
                 <FaLinkedin />
               </a>
             </li>
             <li>
-              <a href="https://github.com/dipeshchaudhary" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/Dipesh600" target="_blank" rel="noopener noreferrer">
                 <FaGithub />
               </a>
             </li>
             <li>
-              <a href="https://www.facebook.com/dipeshchaudhary" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.facebook.com/idomakefunofeverything" target="_blank" rel="noopener noreferrer">
                 <FaFacebook />
               </a>
             </li>
