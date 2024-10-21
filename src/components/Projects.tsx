@@ -33,12 +33,26 @@ const projects: Project[] = [
 ];
 
 const ProjectSection: React.FC = () => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const showCard = (index: number) => {
+        setCurrentIndex(index);
+    };
+
+    const nextCard = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % projects.length);
+    };
+
+    const prevCard = () => {
+        setCurrentIndex((prevIndex) => (prevIndex - 1 + projects.length) % projects.length);
+    };
+
     return (
         <section className="project-section">
             <h2>Projects</h2>
             <div className="projects-container">
                 {projects.map((project, index) => (
-                    <div className="project-card" key={index}>
+                    <div className={`project-card ${index === currentIndex ? 'active' : ''}`} key={index}>
                         <img src={project.image} alt={project.title} className="project-image" />
                         <div className="project-info">
                             <h3>{project.title}</h3>
@@ -50,6 +64,10 @@ const ProjectSection: React.FC = () => {
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className="slideshow-nav">
+                <button onClick={prevCard}>Previous</button>
+                <button onClick={nextCard}>Next</button>
             </div>
         </section>
     );

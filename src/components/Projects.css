@@ -94,7 +94,7 @@ h2 {
 
   /* Optional: Add styles for a simple slideshow effect */
   .project-card {
-      display: inline-block; /* Hide all cards initially */
+      display: none; /* Hide all cards initially */
   }
 
   .project-card.active {
