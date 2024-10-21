@@ -1,92 +1,123 @@
-/* Projects section styles */
-h2{
-    color:#6c63ff;
-    text-align: center;
-}
-.projects {
-    padding: 100px 20px;
-    background-color: #f9f9f9;
-    overflow: hidden; /* Hide any overflow */
+.project-section {
+  padding: 2rem;
+  background-color: #f9f9f9;
 }
 
 .projects-container {
-    position: relative;
-    overflow: hidden; /* Ensure no overflow outside the container */
-    white-space: nowrap; /* Prevent wrapping of elements */
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping for larger screens */
+  justify-content: space-around;
+  overflow-x: auto; /* Enables horizontal scrolling on smaller screens */
 }
 
-.projects-list {
-    display: flex; /* Use flexbox for horizontal layout */
-    animation: scroll 30s linear infinite; /* Horizontal scroll animation */
-    transition: transform 0.3s ease-in-out; /* Smooth transition on hover */
+h2 {
+  text-align: center;
+  color: #6c63ff;
 }
 
-/* Project Item Styling */
-.project-item {
-    display: inline-block;
-    width: 300px; /* Set a fixed width to prevent text from wrapping */
-    margin: 0 20px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    white-space: normal; /* Allow normal word wrapping */
+.project-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 1rem;
+  max-width: 300px;
+  overflow: hidden; /* Ensures content doesn't overflow the card */
+  transition: transform 0.2s;
+  flex: 0 1 calc(33.33% - 2rem); /* Default: three cards per row on larger screens */
 }
 
-.project-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+.project-card:hover {
+  transform: translateY(-5px);
 }
 
-/* Stylish Hover Effects for Project Items */
-.project-item:hover {
-    transform: scale(1.05); /* Slightly enlarge the project item on hover */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add a shadow for a 3D effect */
+.project-image {
+  border-radius: 8px 8px 0 0;
+  width: 100%;
+  height: 180px; /* Fixed height for uniformity */
+  object-fit: cover; /* Ensures the image covers the area without distortion */
 }
 
-/* Description and Read more/less styles */
-.project-item p {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #555;
-    white-space: pre-wrap; /* Ensures long text wraps properly without breaking layout */
-    overflow: hidden;
-    text-overflow: ellipsis; /* Adds '...' for text overflow */
-    height: 50px; /* Set a fixed height for consistent card sizes */
+.project-info {
+  padding: 1rem;
+}
+
+.project-info h3 {
+  margin: 0 0 0.5rem;
+}
+
+.project-description {
+  color: #555;
+  font-size: 0.9rem;
+  overflow: hidden; /* Prevents text overflow */
+  display: -webkit-box; /* Allows for multi-line truncation */
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3; /* Limits the number of lines displayed */
 }
 
 .read-more {
-    color: #007bff;
-    cursor: pointer;
-    font-weight: bold;
-    text-decoration: underline;
+  display: block;
+  margin: 0.5rem 0;
+  color: #007bff;
+  text-decoration: none;
 }
 
 .read-more:hover {
-    color: #0056b3;
+  text-decoration: underline;
 }
 
-/* Keyframes for infinite scrolling */
-@keyframes scroll {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        transform: translateX(-50%);
-    }
+.like-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
 }
 
-/* Pause animation on hover */
-.projects-container:hover .projects-list {
-    animation-play-state: paused;
+.like-button:hover {
+  background-color: #0056b3;
 }
 
-/* Responsive adjustments */
+/* Media Queries for Smaller Screens */
 @media (max-width: 768px) {
-    .project-item {
-        width: 250px;
-    }
+  .projects-container {
+      display: flex; /* Change to block for single-column layout */
+      overflow-x: hidden; /* Prevent horizontal scrolling */
+      
+  }
 
-    .projects h2 {
-        font-size: 2rem;
-    }
+  .project-card {
+      margin: 1rem auto; /* Center the cards with margin */
+      max-width: 90%; /* Allow cards to take up more width */
+      flex: none; /* Override flex settings */
+  }
+
+  /* Optional: Add styles for a simple slideshow effect */
+  .project-card {
+      display: inline-block; /* Hide all cards initially */
+  }
+
+  .project-card.active {
+      display: block; /* Show the active card */
+  }
+
+  /* Add styles for navigation buttons (optional) */
+  .slideshow-nav {
+      text-align: center;
+      margin-top: 1rem;
+  }
+
+  .slideshow-nav button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      margin: 0 0.5rem;
+  }
+
+  .slideshow-nav button:hover {
+      background-color: #0056b3;
+  }
 }

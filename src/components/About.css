@@ -23,7 +23,8 @@
 .about h2 {
     font-size: 2.5rem; /* Heading size */
     margin-bottom: 20px; /* Spacing below the heading */
-    color: #333; /* Dark color for heading */
+    color:#6c63ff; /* Dark color for heading */
+    text-align: center;
 }
 
 .about p {
@@ -31,6 +32,7 @@
     line-height: 1.7; /* Line height for readability */
     margin-bottom: 20px; /* Spacing below paragraphs */
     color: #555; /* Medium gray color for text */
+    text-align: center;
 }
 
 .about strong {
@@ -61,18 +63,53 @@
 
 .man-illustration {
     height: auto; /* Automatic height */
-    width: 150px; /* Fixed width */
+    width: auto; /* Fixed width */
     max-height: 300px; /* Maximum height for image */
 }
 
-/* Media query to hide image on small screens */
-@media (max-width: 768px) {
+.read-more-btn {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left:20px;
+    padding: 8px 16px;
+    background-color: #555;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .read-more-btn:hover {
+    background-color: #333;
+  }
+  
+  .about-btn {
+    margin-top: 10px; /* Space between buttons */
+  }
+  
+  @media (max-width: 768px) {
     .about-container {
-        flex-direction: column; /* Stack text and image on small screens */
-        align-items: center; /* Center align on small screens */
+      flex-direction: column; /* Stack text and image on small screens */
+      align-items: center;
     }
-
+  
     .about-image {
-        display: none; /* Hide image on small screens */
+      display: none; /* Hide image on small screens */
+    }
+  
+    .read-more-btn {
+      margin-bottom: 10px; /* Add spacing for better alignment */
+      margin-right:30px;
+      padding:12px;
+      margin-left:10px;
+    }
+  }
+  
+@media (max-width:991px){
+    .about-image{
+        width:40vw;
     }
 }
+
+
