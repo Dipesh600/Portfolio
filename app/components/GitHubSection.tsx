@@ -2,18 +2,29 @@
 
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { Star, GitFork, RefreshCw } from "lucide-react";
-import { Skeleton } from "@/components/ui/skeleton";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { Skeleton } from "./ui/skeleton";
+import { Card, CardContent } from "./ui/card";
+import { Button } from "./ui/button";
+import { useToast } from "../hooks/use-toast";
 import { useEffect, useState } from "react";
-import type { GitHubRepo, GitHubUser, GitHubContributions } from "@/lib/types";
+import type { GitHubRepo, GitHubUser, GitHubContributions } from "../lib/types";
 
 export default function GitHubSection() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
   const [isRefreshing, setIsRefreshing] = useState(false);
-  const [lastUpdated, setLastUpdated] = useState<Date>(new Date());
+  const [lastUpdated, setLastUpdated] = useState<string>("");
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+    setLastUpdated(new Date().toLocaleTimeString([], { 
+      hour: '2-digit', 
+      minute: '2-digit', 
+      second: '2-digit', 
+      hour12: true 
+    }).toUpperCase());
+  }, []);
   
   // Auto-refresh GitHub data every 5 minutes
   useEffect(() => {
@@ -36,7 +47,13 @@ export default function GitHubSection() {
         queryClient.invalidateQueries({ queryKey: ['github-contributions'] })
       ]);
       
-      setLastUpdated(new Date());
+      setLastUpdated(new Date().toLocaleTimeString([], { 
+        hour: '2-digit', 
+        minute: '2-digit', 
+        second: '2-digit', 
+        hour12: true 
+      }).toUpperCase());
+      
       toast({
         title: "Data refreshed",
         description: "GitHub data has been updated successfully.",
@@ -102,14 +119,11 @@ export default function GitHubSection() {
           <h2 className="text-2xl md:text-3xl font-poppins font-semibold">GitHub Activity</h2>
           
           <div className="flex items-center mt-4 md:mt-0">
-            <span className="text-neutral-600 text-sm mr-4">
-              Last updated: {lastUpdated.toLocaleTimeString([], { 
-                hour: '2-digit', 
-                minute: '2-digit', 
-                second: '2-digit', 
-                hour12: true 
-              }).toUpperCase()}
-            </span>
+            {mounted && (
+              <span className="text-neutral-600 text-sm mr-4">
+                Last updated: {lastUpdated}
+              </span>
+            )}
             <Button
               variant="outline"
               size="sm"
