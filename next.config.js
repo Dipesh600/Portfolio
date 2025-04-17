@@ -8,6 +8,7 @@ const nextConfig = {
   webpack: (config) => {
     config.resolve.alias = {
       ...config.resolve.alias,
+      '@': '.',
       '@shared': './shared',
       '@assets': './app/assets',
     };

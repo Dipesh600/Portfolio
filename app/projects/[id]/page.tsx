@@ -1,8 +1,8 @@
 'use client';
 
 import { ArrowLeft, Github, ExternalLink, Linkedin } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '../../components/ui/button';
+import { Card, CardContent } from '../../components/ui/card';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
