@@ -1,14 +1,14 @@
 import { useEffect } from "react";
-import Header from "@/components/Header";
-import Hero from "@/components/Hero";
-import GitHubSection from "@/components/GitHubSection";
-import SkillsSection from "@/components/SkillsSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import CertificationsSection from "@/components/CertificationsSection";
-import EducationSection from "@/components/EducationSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import GitHubSection from "./components/GitHubSection";
+import SkillsSection from "./components/SkillsSection";
+import ExperienceSection from "./components/ExperienceSection";
+import ProjectsSection from "./components/ProjectsSection";
+import CertificationsSection from "./components/CertificationsSection";
+import EducationSection from "./components/EducationSection";
+import ContactSection from "./components/ContactSection";
+import Footer from "./components/Footer";
 
 export default function Home() {
   // Scroll to section when URL hash changes

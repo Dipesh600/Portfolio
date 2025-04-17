@@ -1,10 +1,10 @@
 import { FileText, Worm, Music2, Clock, ExternalLink } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "./ui/card";
+import { Button } from "./ui/button";
 import Link from "next/link";
 
 interface Project {
-  id: number;
+  projectId: number;
   title: string;
   period: string;
   description: string;
@@ -13,13 +13,13 @@ interface Project {
   icon: React.ReactNode;
   gradientFrom: string;
   gradientTo: string;
-  url: string; // Added URL property for project links
+  url: string;
 }
 
 export default function ProjectsSection() {
   const projects: Project[] = [
     {
-      id: 1,
+      projectId: 1,
       title: "SRS on Instagram",
       period: "Oct 2023",
       description: "Prepared Software Requirements and Specifications (SRS) for Instagram, outlining system functionalities, constraints, and performance requirements.",
@@ -35,7 +35,7 @@ export default function ProjectsSection() {
       url: "https://github.com/aryanaditya2003/SRS-on-Instagram"
     },
     {
-      id: 2,
+      projectId: 2,
       title: "Covid Database",
       period: "Feb - Mar 2023",
       description: "Developed a system to retrieve, update, and visualize COVID-19 data efficiently with comprehensive database management.",
@@ -51,7 +51,7 @@ export default function ProjectsSection() {
       url: "https://github.com/aryanaditya2003/covid-database"
     },
     {
-      id: 3,
+      projectId: 3,
       title: "Music World",
       period: "May - Jul 2023",
       description: "Created a web application for listening to and downloading songs with an intuitive user interface.",
@@ -67,7 +67,7 @@ export default function ProjectsSection() {
       url: "https://github.com/aryanaditya2003/music-world"
     },
     {
-      id: 4,
+      projectId: 4,
       title: "Clock Angle",
       period: "May - Jul 2024",
       description: "Built a program to calculate the angle between the hour and minute hands of a clock, demonstrating algorithmic thinking.",
@@ -91,7 +91,7 @@ export default function ProjectsSection() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
+            <ProjectCard key={project.projectId} project={project} />
           ))}
         </div>
       </div>
@@ -103,7 +103,7 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <div className="group">
       <Card className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow group-hover:border-primary cursor-pointer">
-        <Link href={`/projects/detail/${project.id}`} className="block">
+        <Link href={`/projects/detail/${project.projectId}`} className="block">
           <div className={`h-36 bg-gradient-to-r ${project.gradientFrom} ${project.gradientTo} flex items-center justify-center text-white relative`}>
             {project.icon}
             <div className="absolute top-2 right-2 bg-white/10 p-1 rounded-full backdrop-blur-sm">
@@ -141,7 +141,7 @@ function ProjectCard({ project }: { project: Project }) {
               className="bg-primary text-white hover:bg-primary/90"
               asChild
             >
-              <Link href={`/projects/detail/${project.id}`}>
+              <Link href={`/projects/detail/${project.projectId}`}>
                 View Details
               </Link>
             </Button>
