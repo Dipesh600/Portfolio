@@ -103,7 +103,7 @@ function ProjectCard({ project }: { project: Project }) {
   return (
     <div className="group">
       <Card className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow group-hover:border-primary cursor-pointer">
-        <Link href={`/projects/detail/${project.projectId}`} className="block">
+        <Link href={`/projects/${project.projectId}`} className="block">
           <div className={`h-36 bg-gradient-to-r ${project.gradientFrom} ${project.gradientTo} flex items-center justify-center text-white relative`}>
             {project.icon}
             <div className="absolute top-2 right-2 bg-white/10 p-1 rounded-full backdrop-blur-sm">
@@ -141,7 +141,7 @@ function ProjectCard({ project }: { project: Project }) {
               className="bg-primary text-white hover:bg-primary/90"
               asChild
             >
-              <Link href={`/projects/detail/${project.projectId}`}>
+              <Link href={`/projects/${project.projectId}`}>
                 View Details
               </Link>
             </Button>
