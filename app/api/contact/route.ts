@@ -1,14 +1,8 @@
 import { NextResponse } from "next/server";
-import { z } from "zod";
+import { contactFormSchema } from "../../../shared/schema";
+import { ZodError } from "zod";
+import { fromZodError } from "zod-validation-error";
 import nodemailer from "nodemailer";
-
-// Contact form schema
-const contactFormSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  subject: z.string().min(3, { message: "Subject must be at least 3 characters." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
-});
 
 // Create a transporter using Gmail SMTP
 const transporter = nodemailer.createTransport({
@@ -51,12 +45,10 @@ export async function POST(request: Request) {
       { status: 200 }
     );
   } catch (error) {
-    if (error instanceof z.ZodError) {
+    if (error instanceof ZodError) {
+      const validationError = fromZodError(error);
       return NextResponse.json(
-        { 
-          message: "Validation error",
-          errors: error.errors 
-        },
+        { message: validationError.message },
         { status: 400 }
       );
     }
