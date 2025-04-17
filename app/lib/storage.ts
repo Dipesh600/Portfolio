@@ -1,4 +1,4 @@
-import { users, type User, type InsertUser, GitHubRepo, GitHubUser, GitHubContributions } from "@shared/schema";
+import { users, type User, type InsertUser, GitHubRepo, GitHubUser, GitHubContributions } from "../../shared/schema";
 
 // Interface for cached data
 interface CachedData<T> {

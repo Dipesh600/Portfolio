@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { storage } from '@/lib/storage';
+import { storage } from '../../../lib/storage';
 
 // Cache duration
 const CACHE_DURATION = 3600000; // 1 hour in milliseconds

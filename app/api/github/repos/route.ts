@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import axios from 'axios';
-import { storage } from '@/lib/storage';
+import { storage } from '../../../lib/storage';
 
 // GitHub API configuration
 const GITHUB_API_BASE = "https://api.github.com";

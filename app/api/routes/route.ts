@@ -1,8 +1,8 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
+import { storage } from "../../lib/storage";
 import axios from "axios";
-import { GitHubRepo, contactFormSchema } from "@shared/schema";
+import { GitHubRepo, contactFormSchema } from "../../../shared/schema";
 import { ZodError } from "zod";
 import { fromZodError } from "zod-validation-error";
 
