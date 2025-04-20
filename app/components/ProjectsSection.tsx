@@ -110,7 +110,7 @@ export default function ProjectsSection() {
         "Documented functional and non-functional requirements",
         "Utilized MySQL for database testing and Selenium for UI validation"
       ],
-      technologies: ["MySQL", "Selenium", "SRS", "UML"],
+      technologies: [ "SRS", "UML"],
       image: "/srs_instagram.jpeg",
       gradientFrom: "from-primary",
       gradientTo: "to-blue-500",
