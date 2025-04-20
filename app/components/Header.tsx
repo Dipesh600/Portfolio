@@ -26,6 +26,16 @@ export default function Header() {
     setIsMenuOpen(false);
   };
 
+  const navigationItems = [
+    ["About", "#about"],
+    ["Skills", "#skills"],
+    ["Experience", "#experience"],
+    ["Projects", "#projects"],
+    ["Education", "#education"],
+    ["Certificates", "#certifications"],
+    ["Contact", "#contact"],
+  ];
+
   return (
     <header 
       className={`sticky top-0 z-50 transition-all duration-300 bg-background/95 backdrop-blur-sm border-b border-border ${
@@ -43,14 +53,7 @@ export default function Header() {
         <div className="hidden md:flex items-center space-x-8">
           <nav>
             <ul className="flex space-x-6">
-              {[
-                ["About", "#about"],
-                ["Skills", "#skills"],
-                ["Experience", "#experience"],
-                ["Projects", "#projects"],
-                ["Education", "#education"],
-                ["Contact", "#contact"],
-              ].map(([label, href]) => (
+              {navigationItems.map(([label, href]) => (
                 <li key={label}>
                   <a 
                     href={href}
@@ -84,14 +87,7 @@ export default function Header() {
         }`}
       >
         <ul className="py-4 px-4 space-y-4">
-          {[
-            ["About", "#about"],
-            ["Skills", "#skills"],
-            ["Experience", "#experience"],
-            ["Projects", "#projects"],
-            ["Education", "#education"],
-            ["Contact", "#contact"],
-          ].map(([label, href]) => (
+          {navigationItems.map(([label, href]) => (
             <li key={label}>
               <a
                 href={href}
