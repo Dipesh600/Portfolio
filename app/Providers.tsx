@@ -13,6 +13,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
         defaultTheme="system"
         enableSystem
         disableTransitionOnChange
+        storageKey="portfolio-theme"
       >
         {children}
         <Toaster />

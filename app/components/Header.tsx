@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,38 +27,81 @@ export default function Header() {
   };
 
   return (
-    <header className={`bg-white sticky top-0 z-50 transition-shadow duration-300 ${isScrolled ? 'shadow-md' : ''}`}>
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+    <header 
+      className={`sticky top-0 z-50 transition-all duration-300 bg-background/95 backdrop-blur-sm border-b border-border ${
+        isScrolled ? 'shadow-lg shadow-background/5' : ''
+      }`}
+    >
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div>
-          <h1 className="text-xl md:text-2xl font-poppins font-semibold text-primary">Aryan Aditya</h1>
-          <p className="text-sm text-neutral-700 font-open-sans">Software Test Engineer</p>
+          <h1 className="text-xl md:text-2xl font-poppins font-bold bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">
+            Aryan Aditya
+          </h1>
+          <p className="text-sm text-muted-foreground font-medium">Software Test Engineer</p>
         </div>
         
-        <nav className="hidden md:block">
-          <ul className="flex space-x-6">
-            <li><a href="#about" className="font-poppins text-neutral-900 hover:text-primary transition-colors">About</a></li>
-            <li><a href="#skills" className="font-poppins text-neutral-900 hover:text-primary transition-colors">Skills</a></li>
-            <li><a href="#experience" className="font-poppins text-neutral-900 hover:text-primary transition-colors">Experience</a></li>
-            <li><a href="#projects" className="font-poppins text-neutral-900 hover:text-primary transition-colors">Projects</a></li>
-            <li><a href="#education" className="font-poppins text-neutral-900 hover:text-primary transition-colors">Education</a></li>
-            <li><a href="#contact" className="font-poppins text-neutral-900 hover:text-primary transition-colors">Contact</a></li>
-          </ul>
-        </nav>
+        <div className="hidden md:flex items-center space-x-8">
+          <nav>
+            <ul className="flex space-x-6">
+              {[
+                ["About", "#about"],
+                ["Skills", "#skills"],
+                ["Experience", "#experience"],
+                ["Projects", "#projects"],
+                ["Education", "#education"],
+                ["Contact", "#contact"],
+              ].map(([label, href]) => (
+                <li key={label}>
+                  <a 
+                    href={href}
+                    className="font-medium text-foreground/90 hover:text-primary transition-colors duration-200 relative after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-primary after:transition-all hover:after:w-full"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <ThemeToggle />
+        </div>
         
-        <button className="md:hidden text-neutral-900" onClick={toggleMenu} aria-label="Toggle Menu">
-          <Menu className="h-6 w-6" />
-        </button>
+        <div className="md:hidden flex items-center space-x-4">
+          <ThemeToggle />
+          <button 
+            className="text-foreground/90 hover:text-primary transition-colors duration-200" 
+            onClick={toggleMenu} 
+            aria-label="Toggle Menu"
+          >
+            <Menu className="h-6 w-6" />
+          </button>
+        </div>
       </div>
       
       {/* Mobile menu */}
-      <div className={`md:hidden bg-white shadow-lg absolute w-full transition-all duration-300 ease-in-out ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-        <ul className="py-3 px-4 space-y-3">
-          <li><a href="#about" className="block font-poppins text-neutral-900 hover:text-primary transition-colors py-2" onClick={closeMenu}>About</a></li>
-          <li><a href="#skills" className="block font-poppins text-neutral-900 hover:text-primary transition-colors py-2" onClick={closeMenu}>Skills</a></li>
-          <li><a href="#experience" className="block font-poppins text-neutral-900 hover:text-primary transition-colors py-2" onClick={closeMenu}>Experience</a></li>
-          <li><a href="#projects" className="block font-poppins text-neutral-900 hover:text-primary transition-colors py-2" onClick={closeMenu}>Projects</a></li>
-          <li><a href="#education" className="block font-poppins text-neutral-900 hover:text-primary transition-colors py-2" onClick={closeMenu}>Education</a></li>
-          <li><a href="#contact" className="block font-poppins text-neutral-900 hover:text-primary transition-colors py-2" onClick={closeMenu}>Contact</a></li>
+      <div 
+        className={`md:hidden bg-background/95 backdrop-blur-sm border-t border-border transition-all duration-300 ease-in-out ${
+          isMenuOpen ? 'opacity-100 visible max-h-96' : 'opacity-0 invisible max-h-0'
+        }`}
+      >
+        <ul className="py-4 px-4 space-y-4">
+          {[
+            ["About", "#about"],
+            ["Skills", "#skills"],
+            ["Experience", "#experience"],
+            ["Projects", "#projects"],
+            ["Education", "#education"],
+            ["Contact", "#contact"],
+          ].map(([label, href]) => (
+            <li key={label}>
+              <a
+                href={href}
+                className="block font-medium text-foreground/90 hover:text-primary transition-colors duration-200"
+                onClick={closeMenu}
+              >
+                {label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </header>

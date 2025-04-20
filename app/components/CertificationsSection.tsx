@@ -1,5 +1,6 @@
 import { Award, ExternalLink, Clock } from "lucide-react";
 import Image from "next/image";
+import { Card } from "./ui/card";
 
 interface Certification {
   id: number;
@@ -68,9 +69,13 @@ export default function CertificationsSection() {
   ];
 
   return (
-    <section id="certifications" className="py-12 bg-white">
+    <section id="certifications" className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-poppins font-semibold text-center mb-12">Certifications</h2>
+        <h2 className="text-3xl md:text-4xl font-poppins font-bold text-center mb-16">
+          <span className="bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">
+            Certifications
+          </span>
+        </h2>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {certifications.map((certification) => (
@@ -84,51 +89,54 @@ export default function CertificationsSection() {
 
 function CertificationCard({ certification }: { certification: Certification }) {
   return (
-    <div className="bg-white border border-neutral-200 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+    <Card className="group bg-card border-border overflow-hidden hover:shadow-xl transition-all duration-300 hover:border-primary">
       {certification.status === "completed" ? (
-        <div className="relative aspect-video mb-4">
+        <div className="relative aspect-video">
           <Image
             src={certification.image!}
             alt={certification.title}
             fill
-            className="object-cover rounded-lg"
+            className="object-cover"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
         </div>
       ) : (
-        <div className="aspect-video bg-neutral-100 rounded-lg mb-4 flex items-center justify-center">
+        <div className="aspect-video bg-accent/50 flex items-center justify-center">
           <div className="text-center p-4">
-            <Clock className="h-8 w-8 text-neutral-400 mx-auto mb-2" />
-            <p className="text-neutral-500">Certificate in Progress</p>
+            <Clock className="h-8 w-8 text-muted-foreground mx-auto mb-2" />
+            <p className="text-muted-foreground">Certificate in Progress</p>
           </div>
         </div>
       )}
       
-      <div className="flex items-center mb-4">
-        <Award className="h-6 w-6 text-primary mr-3" />
-        <h3 className="text-lg font-poppins font-semibold">{certification.title}</h3>
+      <div className="p-6">
+        <div className="flex items-center mb-4">
+          <Award className="h-6 w-6 text-primary mr-3" />
+          <h3 className="text-lg font-poppins font-semibold text-foreground">{certification.title}</h3>
+        </div>
+        
+        <div className="flex justify-between text-sm text-muted-foreground mb-3">
+          <span>{certification.provider}</span>
+          <span>{certification.hours}</span>
+        </div>
+        
+        <div className="mt-4">
+          {certification.status === "completed" ? (
+            <a 
+              href={certification.link} 
+              className="text-primary hover:text-primary/80 text-sm flex items-center transition-colors"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ExternalLink className="h-4 w-4 mr-1" /> View Certificate
+            </a>
+          ) : (
+            <span className="text-amber-500 dark:text-amber-400 text-sm flex items-center">
+              <Clock className="h-4 w-4 mr-1" /> In Progress
+            </span>
+          )}
+        </div>
       </div>
-      
-      <div className="flex justify-between text-sm text-neutral-600 mb-3">
-        <span>{certification.provider}</span>
-        <span>{certification.hours}</span>
-      </div>
-      
-      <div className="mt-4">
-        {certification.status === "completed" ? (
-          <a 
-            href={certification.link} 
-            className="text-primary hover:text-primary/80 text-sm flex items-center"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <ExternalLink className="h-4 w-4 mr-1" /> View Certificate
-          </a>
-        ) : (
-          <span className="text-amber-600 text-sm flex items-center">
-            <Clock className="h-4 w-4 mr-1" /> In Progress
-          </span>
-        )}
-      </div>
-    </div>
+    </Card>
   );
 }

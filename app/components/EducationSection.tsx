@@ -38,9 +38,13 @@ export default function EducationSection() {
   ];
 
   return (
-    <section id="education" className="py-12 bg-neutral-100">
+    <section id="education" className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-poppins font-semibold text-center mb-12">Education</h2>
+        <h2 className="text-3xl md:text-4xl font-poppins font-bold text-center mb-16">
+          <span className="bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">
+            Education
+          </span>
+        </h2>
         
         <div className="max-w-3xl mx-auto">
           {education.map((item, index) => (
@@ -48,26 +52,26 @@ export default function EducationSection() {
               key={item.id} 
               className={`relative pl-8 ${index < education.length - 1 ? 'pb-12' : 'pb-0'} timeline-item`}
             >
-              <div className="absolute left-0 top-0 w-1 h-full bg-neutral-200"></div>
+              <div className="absolute left-0 top-0 w-1 h-full bg-border"></div>
               <div className="absolute left-[-8px] top-0 w-4 h-4 rounded-full bg-primary"></div>
               
-              <div className="bg-white border border-neutral-200 p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+              <div className="bg-card border border-border rounded-lg p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="flex flex-col md:flex-row justify-between mb-3">
                   <h3 className="text-xl font-poppins font-semibold text-primary mb-2 md:mb-0">{item.degree}</h3>
-                  <div className="flex items-center text-sm text-neutral-600">
+                  <div className="flex items-center text-sm text-muted-foreground">
                     <CalendarIcon className="h-4 w-4 mr-1" />
                     <span>{item.period}</span>
                   </div>
                 </div>
                 
                 <div className="flex flex-col md:flex-row justify-between mb-4">
-                  <h4 className="text-lg font-poppins">{item.institution}</h4>
+                  <h4 className="text-lg font-poppins text-foreground">{item.institution}</h4>
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center text-sm text-neutral-600">
+                    <div className="flex items-center text-sm text-muted-foreground">
                       <MapPinIcon className="h-4 w-4 mr-1" />
                       <span>{item.location}</span>
                     </div>
-                    <div className="flex items-center text-sm text-neutral-600">
+                    <div className="flex items-center text-sm text-muted-foreground">
                       <Award className="h-4 w-4 mr-1" />
                       <span>{item.score}</span>
                     </div>

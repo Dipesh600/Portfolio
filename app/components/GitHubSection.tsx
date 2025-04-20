@@ -113,14 +113,18 @@ export default function GitHubSection() {
   const hasError = userError || reposError || contributionsError;
 
   return (
-    <section className="py-12 bg-white">
+    <section id="github" className="py-16 bg-[#0d1117]">
       <div className="container mx-auto px-4">
+        <h2 className="text-3xl md:text-4xl font-poppins font-bold text-center mb-16">
+          <span className="bg-gradient-to-r from-[#58a6ff] to-[#58a6ff]/50 bg-clip-text text-transparent">
+            GitHub Activity
+          </span>
+        </h2>
+        
         <div className="flex flex-col md:flex-row justify-between items-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-poppins font-semibold">GitHub Activity</h2>
-          
           <div className="flex items-center mt-4 md:mt-0">
             {mounted && (
-              <span className="text-neutral-600 text-sm mr-4">
+              <span className="text-[#8b949e] text-sm mr-4">
                 Last updated: {lastUpdated}
               </span>
             )}
@@ -129,7 +133,7 @@ export default function GitHubSection() {
               size="sm"
               onClick={refreshGitHubData}
               disabled={isRefreshing}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 border-[#30363d] text-[#c9d1d9] hover:bg-[#30363d] hover:text-[#c9d1d9]"
             >
               <RefreshCw className={`h-4 w-4 ${isRefreshing ? 'animate-spin' : ''}`} />
               {isRefreshing ? 'Refreshing...' : 'Refresh Data'}
@@ -137,7 +141,7 @@ export default function GitHubSection() {
           </div>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <StatCard 
             title="Repositories" 
             value={userData?.public_repos} 
@@ -157,8 +161,8 @@ export default function GitHubSection() {
           />
         </div>
         
-        <div className="mt-12">
-          <h3 className="text-xl font-poppins font-semibold mb-6">Recent Repositories</h3>
+        <div className="space-y-6">
+          <h3 className="text-xl font-poppins font-semibold text-[#c9d1d9] mb-6">Recent Repositories</h3>
           
           {isLoading ? (
             <div className="space-y-4">
@@ -167,23 +171,24 @@ export default function GitHubSection() {
               <RepoSkeleton />
             </div>
           ) : hasError ? (
-            <Card>
+            <Card className="bg-[#161b22] border-[#30363d]">
               <CardContent className="p-6">
-                <p className="text-center text-neutral-700">Failed to load GitHub repositories.</p>
+                <p className="text-center text-[#8b949e]">Failed to load GitHub repositories.</p>
               </CardContent>
             </Card>
           ) : (
             <div className="space-y-4">
-              {repos && Array.isArray(repos) ? repos.map((repo: GitHubRepo) => (
+              {repos && Array.isArray(repos) ? repos.slice(0, 3).map((repo: GitHubRepo) => (
                 <Repository key={repo.id} repo={repo} />
               )) : (
-                <p className="text-center text-neutral-700">No repositories found.</p>
+                <p className="text-center text-[#8b949e]">No repositories found.</p>
               )}
               
               <div className="text-center mt-8">
                 <Button 
                   asChild
-                  className="bg-primary text-white px-6 py-3 rounded-md font-poppins font-semibold transition-all hover:bg-primary/90"
+                  variant="outline"
+                  className="border-[#58a6ff] text-[#58a6ff] hover:bg-[#58a6ff]/10 hover:text-[#58a6ff]"
                 >
                   <a 
                     href="https://github.com/aryanaditya2003" 
@@ -210,19 +215,16 @@ interface StatCardProps {
 
 function StatCard({ title, value, isLoading }: StatCardProps) {
   return (
-    <div className="bg-neutral-100 p-6 rounded-lg shadow-md text-center">
-      {isLoading ? (
-        <div className="flex flex-col items-center">
-          <Skeleton className="h-10 w-16 mb-2 rounded-md" />
-          <Skeleton className="h-6 w-24 rounded-md" />
-        </div>
-      ) : (
-        <>
-          <div className="text-3xl font-poppins font-bold text-primary mb-2">{value || 0}</div>
-          <p className="text-neutral-700">{title}</p>
-        </>
-      )}
-    </div>
+    <Card className="bg-[#161b22] border-[#30363d]">
+      <CardContent className="p-6">
+        <h4 className="text-lg font-poppins font-semibold text-[#c9d1d9] mb-2">{title}</h4>
+        {isLoading ? (
+          <Skeleton className="h-8 w-20 bg-[#30363d]" />
+        ) : (
+          <p className="text-3xl font-bold text-[#58a6ff]">{value || 0}</p>
+        )}
+      </CardContent>
+    </Card>
   );
 }
 
@@ -238,69 +240,62 @@ function Repository({ repo }: { repo: GitHubRepo }) {
   };
   
   return (
-    <div className="bg-white border border-neutral-200 rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow">
-      <div className="flex justify-between items-start">
-        <div>
-          <a 
-            href={repo.html_url} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-lg font-poppins font-semibold text-primary hover:underline"
-          >
-            {repo.name}
-          </a>
-          <p className="text-neutral-700 mt-2">
-            {repo.description || "No description provided"}
-          </p>
+    <Card className="bg-[#161b22] border-[#30363d] hover:border-[#8b949e] transition-all duration-300">
+      <CardContent className="p-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div>
+            <a 
+              href={repo.html_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-lg font-poppins font-semibold text-[#58a6ff] hover:underline"
+            >
+              {repo.name}
+            </a>
+            <p className="text-[#8b949e] mt-1">{repo.description}</p>
+          </div>
           
-          <div className="flex mt-4 flex-wrap">
-            {getTopics(repo).map((topic, index) => (
-              <span 
-                key={index} 
-                className="bg-neutral-100 text-neutral-700 px-3 py-1 rounded-full text-sm mr-2 mb-2"
-              >
-                {topic}
+          <div className="flex items-center gap-4">
+            {repo.language && (
+              <span className="text-sm text-[#8b949e] flex items-center">
+                <span className="w-3 h-3 rounded-full bg-[#238636] mr-2"></span>
+                {repo.language}
               </span>
-            ))}
+            )}
+            
+            <div className="flex items-center gap-3">
+              <span className="flex items-center text-sm text-[#8b949e]">
+                <Star className="h-4 w-4 mr-1 text-[#8b949e]" />
+                {repo.stargazers_count}
+              </span>
+              <span className="flex items-center text-sm text-[#8b949e]">
+                <GitFork className="h-4 w-4 mr-1 text-[#8b949e]" />
+                {repo.forks_count}
+              </span>
+            </div>
           </div>
         </div>
-        
-        <div className="flex items-center space-x-4">
-          <div className="flex items-center">
-            <Star className="h-4 w-4 text-yellow-400 mr-1" />
-            <span className="text-neutral-700">{repo.stargazers_count}</span>
-          </div>
-          <div className="flex items-center">
-            <GitFork className="h-4 w-4 text-neutral-700 mr-1" />
-            <span className="text-neutral-700">{repo.forks_count}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
 
 function RepoSkeleton() {
   return (
-    <div className="bg-white border border-neutral-200 rounded-lg shadow-sm p-6">
-      <div className="flex justify-between">
-        <div className="w-3/4">
-          <Skeleton className="h-6 w-48 mb-4 rounded-md" />
-          <Skeleton className="h-4 w-full mb-2 rounded-md" />
-          <Skeleton className="h-4 w-2/3 mb-6 rounded-md" />
-          
-          <div className="flex gap-2">
-            <Skeleton className="h-8 w-20 rounded-full" />
-            <Skeleton className="h-8 w-20 rounded-full" />
-            <Skeleton className="h-8 w-20 rounded-full" />
+    <Card className="bg-[#161b22] border-[#30363d]">
+      <CardContent className="p-6">
+        <div className="space-y-4">
+          <Skeleton className="h-6 w-48 bg-[#30363d]" />
+          <Skeleton className="h-4 w-full bg-[#30363d]" />
+          <div className="flex justify-between">
+            <Skeleton className="h-4 w-20 bg-[#30363d]" />
+            <div className="flex gap-4">
+              <Skeleton className="h-4 w-16 bg-[#30363d]" />
+              <Skeleton className="h-4 w-16 bg-[#30363d]" />
+            </div>
           </div>
         </div>
-        
-        <div className="flex items-start space-x-4">
-          <Skeleton className="h-6 w-12 rounded-md" />
-          <Skeleton className="h-6 w-12 rounded-md" />
-        </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

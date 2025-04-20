@@ -74,136 +74,105 @@ export default function ContactSection() {
   
   const contactInfo = [
     {
-      icon: <Mail className="h-6 w-6" />,
       title: "Email",
       content: "aryansinghaditya18@gmail.com",
+      icon: <Mail className="h-8 w-8" />,
       link: "mailto:aryansinghaditya18@gmail.com"
     },
     {
-      icon: <Phone className="h-6 w-6" />,
       title: "Phone",
       content: "+91 9113194954",
+      icon: <Phone className="h-8 w-8" />,
       link: "tel:+919113194954"
     },
     {
-      icon: <MapPin className="h-6 w-6" />,
       title: "Location",
-      content: "Patna, Bihar 800002, India",
-      link: undefined
+      content: "Patna, Bihar, India",
+      icon: <MapPin className="h-8 w-8" />
     }
   ];
 
   return (
-    <section id="contact" className="py-12 bg-white">
+    <section id="contact" className="py-16 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text md:text-3xl font-poppins font-semibold text-center mb-12">Get In Touch</h2>
+        <h2 className="text-3xl md:text-4xl font-poppins font-bold text-center mb-16">
+          <span className="bg-gradient-to-r from-primary to-primary/50 bg-clip-text text-transparent">
+            Get In Touch
+          </span>
+        </h2>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto mb-16">
           {contactInfo.map((item, index) => (
-            <div key={index} className="bg-neutral-100 p-6 rounded-lg shadow-sm text-center hover:shadow-md transition-shadow">
+            <div key={index} className="bg-card border border-border p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 text-primary mb-4">
                 {item.icon}
               </div>
-              <h3 className="text-lg font-poppins font-semibold mb-2">{item.title}</h3>
+              <h3 className="text-lg font-poppins font-semibold text-foreground mb-2">{item.title}</h3>
               {item.link ? (
-                <a href={item.link} className="text-primary hover:underline">
+                <a href={item.link} className="text-primary hover:text-primary/80 transition-colors">
                   {item.content}
                 </a>
               ) : (
-                <p>{item.content}</p>
+                <p className="text-muted-foreground">{item.content}</p>
               )}
             </div>
           ))}
         </div>
-        
-        <div className="max-w-3xl mx-auto mt-12">
-          <Card className="bg-white border border-neutral-200 rounded-lg shadow-md">
-            <CardContent className="p-6 md:p-8">
-              <h3 className="text-xl font-poppins font-semibold mb-6">Send Me a Message</h3>
-              
-              <form onSubmit={form.handleSubmit(onSubmit)}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                  <div>
-                    <label htmlFor="name" className="block text-neutral-700 mb-2">Name</label>
-                    <Input
-                      id="name"
-                      placeholder="Your name"
-                      {...form.register("name")}
-                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:border-primary transition-colors ${
-                        form.formState.errors.name ? "border-red-500" : "border-neutral-300"
-                      }`}
-                    />
-                    {form.formState.errors.name && (
-                      <p className="mt-1 text-sm text-red-500">
-                        {form.formState.errors.name.message}
-                      </p>
-                    )}
-                  </div>
-                  
-                  <div>
-                    <label htmlFor="email" className="block text-neutral-700 mb-2">Email</label>
-                    <Input
-                      id="email"
-                      type="email"
-                      placeholder="Your email"
-                      {...form.register("email")}
-                      className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:border-primary transition-colors ${
-                        form.formState.errors.email ? "border-red-500" : "border-neutral-300"
-                      }`}
-                    />
-                    {form.formState.errors.email && (
-                      <p className="mt-1 text-sm text-red-500">
-                        {form.formState.errors.email.message}
-                      </p>
-                    )}
-                  </div>
-                </div>
-                
-                <div className="mb-6">
-                  <label htmlFor="subject" className="block text-neutral-700 mb-2">Subject</label>
-                  <Input
-                    id="subject"
-                    placeholder="Subject"
-                    {...form.register("subject")}
-                    className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:border-primary transition-colors ${
-                      form.formState.errors.subject ? "border-red-500" : "border-neutral-300"
-                    }`}
-                  />
-                  {form.formState.errors.subject && (
-                    <p className="mt-1 text-sm text-red-500">
-                      {form.formState.errors.subject.message}
-                    </p>
-                  )}
-                </div>
-                
-                <div className="mb-6">
-                  <label htmlFor="message" className="block text-neutral-700 mb-2">Message</label>
-                  <Textarea
-                    id="message"
-                    rows={5}
-                    placeholder="Your message"
-                    {...form.register("message")}
-                    className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:border-primary transition-colors ${
-                      form.formState.errors.message ? "border-red-500" : "border-neutral-300"
-                    }`}
-                  />
-                  {form.formState.errors.message && (
-                    <p className="mt-1 text-sm text-red-500">
-                      {form.formState.errors.message.message}
-                    </p>
-                  )}
-                </div>
-                
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="bg-primary text-white px-6 py-3 rounded-md font-poppins font-semibold transition-all hover:bg-primary/90"
-                >
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
+
+        <div className="max-w-2xl mx-auto">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label htmlFor="name" className="text-sm font-medium text-foreground">
+                  Name
+                </label>
+                <Input
+                  id="name"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                  className="bg-card border-border"
+                  {...form.register("name")}
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="text-sm font-medium text-foreground">
+                  Email
+                </label>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="Your email"
+                  required
+                  className="bg-card border-border"
+                  {...form.register("email")}
+                />
+              </div>
+            </div>
+            
+            <div className="space-y-2">
+              <label htmlFor="message" className="text-sm font-medium text-foreground">
+                Message
+              </label>
+              <Textarea
+                id="message"
+                name="message"
+                placeholder="Your message"
+                required
+                className="bg-card border-border min-h-[150px]"
+                {...form.register("message")}
+              />
+            </div>
+            
+            <Button 
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+            >
+              {isSubmitting ? "Sending..." : "Send Message"}
+            </Button>
+          </form>
         </div>
       </div>
     </section>

@@ -5,24 +5,24 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --foreground: 222 47% 11%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 222 47% 11%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 221.2 83.2% 53.3%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 221 83% 53%;
     --primary-foreground: 210 40% 98%;
     --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary-foreground: 222 47% 11%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
     --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent-foreground: 222 47% 11%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 221.2 83.2% 53.3%;
+    --ring: 221 83% 53%;
     --radius: 0.5rem;
     --chart-1: 221.2 83.2% 53.3%;
     --chart-2: 180 70% 50%;
@@ -40,38 +40,64 @@
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
+    /* Main Background Colors */
+    --background: 222 47% 11%; /* Deep blue-gray background */
+    --foreground: 210 40% 98%; /* Clean white text */
+    
+    /* Card and Content Areas */
+    --card: 223 47% 14%; /* Slightly lighter than background */
     --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
+    --popover: 222 47% 11%;
     --popover-foreground: 210 40% 98%;
-    --primary: 217.2 91.2% 59.8%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
+    
+    /* Primary Brand Colors */
+    --primary: 199 89% 48%; /* Vibrant blue for emphasis */
+    --primary-foreground: 210 40% 98%;
+    
+    /* Secondary Elements */
+    --secondary: 217 33% 17%; /* Muted blue-gray */
     --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
+    
+    /* Muted Elements */
+    --muted: 215 27% 16%;
+    --muted-foreground: 215 20% 65%;
+    
+    /* Accent Colors */
+    --accent: 217 33% 20%;
     --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
+    
+    /* Feedback Colors */
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 224.3 76.3% 48%;
-    --chart-1: 217.2 91.2% 59.8%;
-    --chart-2: 180 70% 50%;
-    --chart-3: 120 70% 50%;
-    --chart-4: 60 70% 50%;
-    --chart-5: 0 70% 50%;
-    --sidebar-background: 222.2 84% 4.9%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 210 40% 98%;
-    --sidebar-primary-foreground: 222.2 47.4% 11.2%;
-    --sidebar-accent: 217.2 32.6% 17.5%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 217.2 32.6% 17.5%;
-    --sidebar-ring: 224.3 76.3% 48%;
+    
+    /* Border and Input Colors */
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 199 89% 48%;
+
+    /* Specific Section Colors */
+    --hero-gradient-start: 222 47% 11%;
+    --hero-gradient-end: 223 47% 14%;
+    
+    /* Skills Section */
+    --skill-bg: 223 47% 14%;
+    --skill-border: 217 33% 20%;
+    
+    /* Project Card */
+    --project-card-bg: 223 47% 14%;
+    --project-card-hover: 217 33% 20%;
+    
+    /* GitHub Section */
+    --github-bg: 222 47% 11%;
+    --github-card: 223 47% 14%;
+    
+    /* Contact Section */
+    --contact-bg: 223 47% 14%;
+    --contact-input: 217 33% 17%;
+    
+    /* Footer */
+    --footer-bg: 222 47% 11%;
+    --footer-border: 217 33% 17%;
   }
 }
 
@@ -82,5 +108,25 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom Animations */
+@layer utilities {
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient 8s ease infinite;
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 }
