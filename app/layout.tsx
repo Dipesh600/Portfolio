@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Providers from './Providers'
+import { ThemeToggle } from './components/ThemeToggle'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +20,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} min-h-screen bg-background font-sans antialiased`}>
         <Providers>
+          <ThemeToggle />
           {children}
         </Providers>
       </body>

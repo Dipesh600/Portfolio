@@ -96,7 +96,7 @@ export default function ContactSection() {
   return (
     <section id="contact" className="py-12 bg-white">
       <div className="container mx-auto px-4">
-        <h2 className="text-2xl md:text-3xl font-poppins font-semibold text-center mb-12">Get In Touch</h2>
+        <h2 className="text-2xl bg-gradient-to-r from-blue-500 to-purple-500 text-transparent bg-clip-text md:text-3xl font-poppins font-semibold text-center mb-12">Get In Touch</h2>
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {contactInfo.map((item, index) => (
